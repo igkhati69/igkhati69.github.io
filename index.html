@@ -1,20 +1,433 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>http://info.cern.ch home of the first website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pramesh Khatri — Portfolio</title>
+<meta name="description" content="Portfolio of Pramesh Khatri, BIT student.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #f6f6f2;
+    --bg-raised: #ffffff;
+    --ink: #12181c;
+    --ink-soft: #4c5559;
+    --line: #dcdfd8;
+    --accent: #1f6f63;
+    --accent-soft: #e4efec;
+    --brass: #8a7130;
+    --radius: 3px;
+    --max: 880px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  /* ---- Header ---- */
+  header{
+    position:sticky; top:0; z-index:10;
+    background:rgba(246,246,242,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px; max-width:var(--max); margin:0 auto;
+  }
+  .nav .brand{
+    display:flex; align-items:center; gap:10px;
+  }
+  .nav .brand img{
+    width:34px; height:34px; border-radius:50%; object-fit:cover;
+    border:1px solid var(--line);
+  }
+  .nav .name{
+    font-family:'Fraunces', serif; font-weight:600; font-size:17px;
+  }
+  .nav ul{
+    list-style:none; display:flex; gap:26px; margin:0; padding:0;
+  }
+  .nav a{
+    color:var(--ink-soft); font-size:14.5px; font-weight:500;
+  }
+  .nav a:hover{ color:var(--accent); text-decoration:none; }
+
+  /* ---- Hero ---- */
+  .hero{ padding:72px 0 40px; text-align:center; }
+  .hero .avatar{
+    width:150px; height:150px; border-radius:50%; object-fit:cover;
+    border:3px solid var(--bg-raised);
+    box-shadow:0 0 0 1px var(--line), 0 12px 28px rgba(18,24,28,0.10);
+    margin:0 auto 20px;
+    display:block;
+  }
+  .hero h1{ font-size:clamp(34px, 6vw, 50px); line-height:1.05; }
+  .hero .role{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--accent);
+    font-size:15.5px;
+    margin-top:12px;
+  }
+  .hero p.lede{
+    max-width:56ch;
+    color:var(--ink-soft);
+    margin:20px auto 0;
+    font-size:17px;
+  }
+  .hero .cta-row{ margin-top:28px; display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
+  .btn{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    padding:11px 20px;
+    border-radius:var(--radius);
+    border:1px solid var(--ink);
+    color:var(--ink);
+  }
+  .btn:hover{ background:var(--ink); color:var(--bg); text-decoration:none; }
+  .btn.primary{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .btn.primary:hover{ background:#175750; }
+
+  /* ---- Signature status bar ---- */
+  .statusbar{
+    margin-top:44px;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--bg-raised);
+    overflow:hidden;
+    text-align:left;
+  }
+  .statusbar .bar-top{
+    display:flex; align-items:center; gap:8px;
+    padding:9px 14px;
+    background:#eef0ea;
+    border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  .statusbar .dot{ width:8px; height:8px; border-radius:50%; background:#c9ccc4; }
+  .statusbar pre{
+    margin:0; padding:16px 18px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    line-height:1.85;
+    overflow-x:auto;
+  }
+  .statusbar .k{ color:var(--brass); }
+  .statusbar .v{ color:var(--ink); }
+  .statusbar .accentline{ color:var(--accent); }
+
+  /* ---- Section shell ---- */
+  section{ padding:64px 0; border-top:1px solid var(--line); }
+  section .heading{ display:flex; align-items:baseline; gap:14px; margin-bottom:34px; }
+  section .heading h2{ font-size:28px; }
+  section .heading .idx{
+    font-family:'IBM Plex Mono', monospace; color:var(--line); font-size:13px;
+  }
+
+  /* ---- About + Skills ---- */
+  .about-grid{
+    display:grid; grid-template-columns: 1.1fr 1fr; gap:48px;
+  }
+  .about-grid p{ color:var(--ink-soft); }
+  .about-grid p + p{ margin-top:14px; }
+  .skill-group{ margin-bottom:22px; }
+  .skill-group h3{
+    font-family:'IBM Plex Mono', monospace; font-weight:500;
+    font-size:12.5px; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--ink-soft); margin-bottom:10px;
+  }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px;
+    padding:6px 11px; border:1px solid var(--line); border-radius:var(--radius);
+    background:var(--bg-raised); color:var(--ink);
+  }
+
+  /* ---- Resume / Timeline ---- */
+  .timeline{ position:relative; padding-left:26px; }
+  .timeline::before{
+    content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px;
+    background:var(--line);
+  }
+  .t-item{ position:relative; padding-bottom:34px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:""; position:absolute; left:-26px; top:4px; width:11px; height:11px;
+    border-radius:50%; background:var(--accent-soft); border:2px solid var(--accent);
+  }
+  .t-item .period{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-soft);
+  }
+  .t-item h3{ font-size:19px; margin-top:6px; }
+  .t-item .org{ color:var(--accent); font-size:14.5px; margin-top:2px; }
+  .t-item p{ color:var(--ink-soft); margin-top:8px; font-size:15px; }
+
+  /* ---- Achievements ---- */
+  .ach-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:20px; }
+  .ach-card{
+    border:1px solid var(--line); border-radius:var(--radius);
+    background:var(--bg-raised); padding:20px 22px;
+  }
+  .ach-card h3{ font-size:16px; margin-bottom:8px; }
+  .ach-card ul{ margin:0; padding-left:18px; color:var(--ink-soft); font-size:14.5px; }
+  .ach-card li + li{ margin-top:6px; }
+
+  /* ---- Languages ---- */
+  .lang-row{ display:flex; justify-content:space-between; max-width:280px; padding:7px 0; border-bottom:1px dashed var(--line); font-size:14.5px; }
+  .lang-row span:last-child{ color:var(--accent); font-family:'IBM Plex Mono', monospace; font-size:13px; }
+
+  /* ---- Contact ---- */
+  .contact-grid{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap:48px; }
+  .contact-info p{ color:var(--ink-soft); margin-top:10px; }
+  .contact-info .row{ margin-top:22px; }
+  .contact-info .row .label{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--brass);
+  }
+  .contact-info .row .value{ margin-top:4px; font-size:15px; }
+  form{ display:flex; flex-direction:column; gap:16px; }
+  label{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase;
+    letter-spacing:0.05em; color:var(--ink-soft); margin-bottom:6px; display:block;
+  }
+  input, textarea{
+    width:100%; font-family:'Inter', sans-serif; font-size:15px;
+    padding:11px 13px; border:1px solid var(--line); border-radius:var(--radius);
+    background:var(--bg-raised); color:var(--ink);
+  }
+  textarea{ resize:vertical; min-height:120px; }
+  form .btn{ align-self:flex-start; cursor:pointer; background:none; }
+  .form-note{ font-size:12.5px; color:var(--ink-soft); margin-top:-4px; }
+
+  footer{
+    padding:32px 0 48px; border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-soft);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+  footer a{ color:var(--ink-soft); }
+
+  @media (max-width:720px){
+    .about-grid, .contact-grid, .ach-grid{ grid-template-columns:1fr; }
+    .nav ul{ gap:16px; }
+    .hero{ padding:56px 0 32px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+</style>
 </head>
 <body>
 
-<h1>http://info.cern.ch home of the first website</h1>
+<header>
+  <nav class="nav">
+    <div class="brand">
+      <img src="profile.png" alt="Pramesh Khatri">
+      <div class="name">Pramesh Khatri</div>
+    </div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
-<p> <b>From here you can: </b> </p>
+<main class="wrap">
 
-<ul>
-  <li><a href="#">Browse the first website</a></li>
-  <li><a href="#">Browse the first website using the line-mode browser simulator</a></li>
-  <li><a href="#">Learn about the birth of the web</a></li>
-  <li><a href="#">Learn about CERN, the physics laboratory where the web was born</a></li>
-</ul>
+  <!-- ===== Hero ===== -->
+  <section class="hero" style="border-top:none;">
+    <img class="avatar" src="profile.png" alt="Pramesh Khatri">
+    <div class="eyebrow">Portfolio</div>
+    <h1>Pramesh Khatri</h1>
+    <div class="role">BIT Student — Padmashree College, affiliated to Nilai University</div>
+    <p class="lede">
+      Motivated BIT student from Padmashree College looking for an opportunity
+      to develop technical skill and gain real-world experience in a
+      professional environment.
+    </p>
+    <div class="cta-row">
+      <a class="btn primary" href="#contact">Get in touch</a>
+      <a class="btn" href="#resume">View resume</a>
+    </div>
 
+    <div class="statusbar">
+      <div class="bar-top"><span class="dot"></span> ~/pramesh — status</div>
+      <pre><span class="k">user</span>      <span class="v">pramesh_khatri</span>
+<span class="k">program</span>   <span class="v">Bachelor of Information Technology (BIT)</span>
+<span class="k">college</span>   <span class="v">Padmashree College — affiliated to Nilai University</span>
+<span class="k">status</span>    <span class="accentline">currently studying — open to opportunities</span></pre>
+    </div>
+  </section>
+
+  <!-- ===== About + Skills ===== -->
+  <section id="about">
+    <div class="heading"><span class="idx">01</span><h2>About &amp; Skills</h2></div>
+    <div class="about-grid">
+      <div>
+        <p>
+          I'm a motivated BIT student currently studying at Padmashree College,
+          affiliated to Nilai University. I'm looking for an opportunity to
+          develop my technical skills and gain real-world experience in a
+          professional environment.
+        </p>
+      </div>
+      <div>
+        <div class="skill-group">
+          <h3>Skills</h3>
+          <div class="tag-row">
+            <span class="tag">Problem Solving</span>
+            <span class="tag">Project Management</span>
+            <span class="tag">Creativity</span>
+            <span class="tag">Leadership</span>
+            <span class="tag">Basic Editing</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Languages</h3>
+          <div class="lang-row"><span>Nepali</span><span>Native</span></div>
+          <div class="lang-row"><span>English</span><span>Intermediate</span></div>
+          <div class="lang-row"><span>Hindi</span><span>Fluent</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Resume / Education ===== -->
+  <section id="resume">
+    <div class="heading"><span class="idx">02</span><h2>Resume &amp; Education</h2></div>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="period">Currently Studying</div>
+        <h3>Bachelor of Information Technology (BIT)</h3>
+        <div class="org">Padmashree College, affiliated to Nilai University</div>
+      </div>
+      <div class="t-item">
+        <div class="period">2025</div>
+        <h3>Higher Education</h3>
+        <div class="org">Himalayan Whitehouse College, Tinkune, Kathmandu</div>
+      </div>
+      <div class="t-item">
+        <div class="period">2023</div>
+        <h3>SEE</h3>
+        <div class="org">SOS HGS, Bhaktapur</div>
+      </div>
+      <div class="t-item">
+        <div class="period">Diploma Computer Course</div>
+        <h3>Diploma in Computer Course</h3>
+        <div class="org">New Zenith Institute, Pepsicola</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Achievements ===== -->
+  <section id="achievements">
+    <div class="heading"><span class="idx">03</span><h2>Achievements</h2></div>
+    <div class="ach-grid">
+      <div class="ach-card">
+        <h3>Football</h3>
+        <ul>
+          <li>Winner — White House Futsal Tournament (2024)</li>
+          <li>Best Player — Inter College Optimums Futsal Cup (2024)</li>
+          <li>Best Striker — Inter Institute Futsal Cup (2023)</li>
+          <li>Participant — Futsal District League, Ramechhap (2024)</li>
+        </ul>
+      </div>
+      <div class="ach-card">
+        <h3>Hobbies &amp; Interests</h3>
+        <ul>
+          <li>Athletics / Football</li>
+          <li>Photography</li>
+          <li>Videography</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section id="contact">
+    <div class="heading"><span class="idx">04</span><h2>Contact</h2></div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>Have a project, opportunity, or question in mind? Send a message —
+          I will try to reply within a day or two.</p>
+        <div class="row">
+          <div class="label">Email</div>
+          <div class="value"><a href="mailto:khatripramesh33@gmail.com">khatripramesh33@gmail.com</a></div>
+        </div>
+        <div class="row">
+          <div class="label">Phone</div>
+          <div class="value"><a href="tel:+9779869055269">+977 9869055269</a></div>
+        </div>
+        <div class="row">
+          <div class="label">Location</div>
+          <div class="value">Kathmandu, Nepal</div>
+        </div>
+      </div>
+
+      <!-- Static form UI: this page alone can't send email. Connect it to a
+           form backend (e.g. Formspree, Netlify Forms) or wire the action
+           below to your own endpoint. -->
+      <form action="https://formspree.io/f/your-form-id" method="POST">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" required>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required>
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button class="btn primary" type="submit">Send message</button>
+        <p class="form-note">Form needs a backend to actually send — see comment in the code.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div>© <span id="year"></span> Pramesh Khatri.</div>
+    <div>Built with HTML &amp; CSS.</div>
+  </footer>
+
+</main>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
