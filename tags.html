@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Football Registration Form</title>
+</head>
+<body>
+
+<h2>Football Player Registration Form</h2>
+
+ <form action="/submit-registration" method="POST" enctype="multipart/form-data">
+        
+ <label for="fullname">Full Name:</label><br>
+ <input type="text" id="fullname" name="fullname" required><br><br>
+
+<label>Preferred Playing Position:</label><br>
+<input type="radio" id="forward" name="position" value="Forward">
+<label for="forward">Forward</label><br>
+ <input type="radio" id="midfielder" name="position" value="Midfielder">
+<label for="midfielder">Midfielder</label><br>
+<input type="radio" id="defender" name="position" value="Defender">
+<label for="defender">Defender</label><br>
+ <input type="radio" id="goalkeeper" name="position" value="Goalkeeper">
+ <label for="goalkeeper">Goalkeeper</label><br><br>
+
+<label>Equipment Needed:</label><br>
+<input type="checkbox" id="jersey" name="equipment" value="Jersey">
+<label for="jersey">Team Jersey</label><br>
+<input type="checkbox" id="cleats" name="equipment" value="Cleats">
+<label for="cleats">Cleats/Boots</label><br>
+ <input type="checkbox" id="guards" name="equipment" value="Shin Guards">
+<label for="guards">Shin Guards</label><br><br>
+
+<label for="photo">Upload Profile Photo / ID:</label><br>
+<input type="file" id="photo" name="photo"><br><br>
+
+<label for="dob">Date of Birth:</label><br>
+<input type="date" id="dob" name="dob"><br><br>
+
+<label for="experience">Select Experience Level:</label><br>
+<select id="experience" name="experience">
+<option value="beginner">Beginner</option>
+<option value="intermediate">Intermediate</option>
+<option value="advanced">Advanced / Semi-Pro</option>
+</select><br><br>
+
+<input type="submit" value="Submit Registration">
+<input type="reset" value="Reset Form"><br><br>
+
+ <label for="status">Form Status:</label>
+<output id="status" name="status">Ready for submission</output>
+
+<div style="border: 3px solid black; padding: 10px;">
+
+    <ol>
+        <li>Football
+            <ul>
+                <li>Messi</li>
+                <li>CR7</li>
+            </ul>
+        </li>
+        <li>Tea
+            <ol type="a">
+                <li>Masala Tea</li>
+                <li>Green Tea</li>
+                <li>Black Tea</li>
+            </ol>
+        </li>
+    </ol>
+
+<ol type="1">
+        <li>Football
+            <ol type="i">
+                <li>Messi</li>
+                <li>CR7</li>
+            </ol>
+        </li>
+        <li>Tea
+            <ol type="a" reversed start="26">
+                <li>Masala Tea</li>
+                <li>Green Tea</li>
+                <li>Black Tea</li>
+            </ol>
+        </li>
+    </ol>
+
+
+</div>
+</body>
+</html>
